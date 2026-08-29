@@ -190,18 +190,52 @@
     .process-card p { color: var(--muted); font-size: 14px; }
 
     .quote-section { background: var(--sage-deep); color: var(--white); }
-    .quote-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: 70px; align-items: start; }
+    .quote-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: 70px; align-items: center; }
     .quote-intro .eyebrow { color: #f5c1aa; }
     .quote-intro h2 { margin-top: 18px; max-width: 360px; }
     .quote-intro p { max-width: 330px; margin-top: 20px; color: rgba(255,253,249,.72); font-size: 15px; }
-    .quote-card { padding: 38px; border-radius: 26px; background: var(--white); color: var(--ink); box-shadow: 0 22px 50px rgba(30,47,35,.2); }
+    .quote-carousel { position: relative; display: grid; gap: 16px; perspective: 1200px; }
+    .quote-card {
+      overflow: hidden;
+      padding: 36px 38px 30px;
+      border-radius: 26px;
+      background: var(--white);
+      color: var(--ink);
+      box-shadow: 0 22px 50px rgba(30,47,35,.2);
+      animation: quote-card-in .55s cubic-bezier(.2, .8, .2, 1) both;
+    }
+    .quote-head { display: flex; align-items: start; justify-content: space-between; gap: 20px; }
     .quote-mark { color: var(--coral); font-family: Georgia, serif; font-size: 60px; line-height: .7; }
-    .quote-card blockquote { margin: 17px 0 26px; font-size: clamp(22px, 3vw, 31px); font-weight: 800; letter-spacing: -.04em; line-height: 1.25; }
+    .quote-head .stars { font-size: 17px; }
+    .quote-card blockquote {
+      margin: 10px 0 25px;
+      min-height: 132px;
+      font-size: clamp(22px, 2.5vw, 31px);
+      font-weight: 800;
+      letter-spacing: -.04em;
+      line-height: 1.25;
+      animation: quote-text-in .6s cubic-bezier(.2, .8, .2, 1) both;
+    }
     .quote-author { display: flex; align-items: center; justify-content: space-between; gap: 18px; padding-top: 18px; border-top: 1px solid var(--line); }
     .quote-author strong { display: block; font-size: 14px; }
     .quote-author span { color: var(--muted); font-size: 12px; }
     .stars { color: var(--coral); font-size: 16px; letter-spacing: .12em; }
-
+    .quote-progress { height: 5px; margin-top: 24px; overflow: hidden; border-radius: 999px; background: rgba(47,53,46,.1); }
+    .quote-progress span { display: block; width: 100%; height: 100%; background: linear-gradient(90deg, var(--coral), #f5c1aa); transform-origin: left center; animation: quote-progress linear forwards; }
+    .quote-carousel.paused .quote-progress span { animation-play-state: paused; }
+    .quote-controls { display: flex; align-items: center; justify-content: space-between; gap: 16px; color: rgba(255,253,249,.78); }
+    .quote-count { font-size: 13px; font-weight: 900; letter-spacing: .12em; }
+    .quote-dots { display: flex; flex: 1; align-items: center; justify-content: center; gap: 8px; }
+    .quote-dot { width: 28px; height: 6px; padding: 0; border: 0; border-radius: 999px; background: rgba(255,253,249,.28); transition: width .25s ease, background .25s ease; }
+    .quote-dot:hover { background: rgba(255,253,249,.58); }
+    .quote-dot.active { width: 42px; background: var(--coral-soft); }
+    .quote-nav { display: flex; gap: 9px; }
+    .quote-nav button { display: grid; place-items: center; width: 44px; height: 44px; padding: 0; color: var(--white); border: 1px solid rgba(255,253,249,.24); border-radius: 50%; background: rgba(255,253,249,.08); transition: border-color .2s ease, background .2s ease, transform .2s ease; }
+    .quote-nav button:hover { border-color: rgba(255,253,249,.7); background: rgba(255,253,249,.18); transform: translateY(-2px); }
+    .quote-nav svg { width: 18px; height: 18px; }
+    @keyframes quote-card-in { from { opacity: 0; transform: translateY(18px) rotateX(-5deg) scale(.98); } to { opacity: 1; transform: translateY(0) rotateX(0) scale(1); } }
+    @keyframes quote-text-in { from { opacity: 0; filter: blur(4px); transform: translateY(14px); } to { opacity: 1; filter: blur(0); transform: translateY(0); } }
+    @keyframes quote-progress { from { transform: scaleX(0); } to { transform: scaleX(1); } }
     .faq-grid { display: grid; grid-template-columns: .78fr 1.22fr; gap: 90px; align-items: start; }
     .faq-intro .eyebrow { margin-bottom: 18px; }
     .faq-intro p { max-width: 320px; margin-top: 20px; color: var(--muted); font-size: 15px; }
@@ -310,7 +344,7 @@
       .nav-links, .nav-cta { display: none; }
       .mobile-toggle { display: block; }
       .nav.mobile-open { flex-wrap: wrap; }
-      .nav.mobile-open .nav-links { display: grid; order: 3; grid-template-columns: repeat(3, 1fr); width: 100%; padding: 16px; border: 1px solid var(--line); border-radius: 16px; background: rgba(255,253,249,.96); text-align: center; box-shadow: 0 14px 28px rgba(67,62,51,.1); }
+      .nav.mobile-open .nav-links { display: grid; order: 3; grid-template-columns: repeat(2, 1fr); width: 100%; padding: 16px; border: 1px solid var(--line); border-radius: 16px; background: rgba(255,253,249,.96); text-align: center; box-shadow: 0 14px 28px rgba(67,62,51,.1); }
       .hero { padding: 112px 0 60px; }
       .hero-grid { gap: 42px; }
       h1 { font-size: clamp(42px, 14vw, 62px); }
@@ -337,8 +371,14 @@
       .photo-float { width: 52%; padding: 7px; border-radius: 15px; }
       .photo-float img { border-radius: 10px; }
       .benefit-list { gap: 14px; }
-      .quote-card { padding: 28px 22px; }
+      .quote-card { padding: 28px 22px 24px; }
+      .quote-card blockquote { min-height: 185px; font-size: 21px; }
       .quote-author { align-items: flex-start; flex-direction: column; }
+      .quote-progress { margin-top: 18px; }
+      .quote-controls { align-items: flex-start; flex-direction: column; gap: 14px; }
+      .quote-dots { justify-content: space-between; }
+      .quote-nav { width: 100%; }
+      .quote-nav button { flex: 1; border-radius: 999px; }
       .map-embed { min-height: 300px; border-radius: 18px; }
       .map-actions a { flex: 1 1 100%; }
       .booking-card { padding: 31px 22px; border-radius: 24px; }

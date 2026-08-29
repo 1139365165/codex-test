@@ -2,7 +2,8 @@ import Image from "next/image";
 import BookingForm from "@/components/BookingForm";
 import Faq from "@/components/Faq";
 import Header from "@/components/Header";
-import { faqItems, mapLinks, processSteps, services, storeDetails, type Service } from "@/data/site";
+import Testimonials from "@/components/Testimonials";
+import { faqItems, mapLinks, processSteps, services, storeDetails, testimonials, type Service } from "@/data/site";
 
 function ServiceIcon({ icon }: Pick<Service, "icon">) {
   const common = { viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: 1.7 };
@@ -131,13 +132,7 @@ export default function Home() {
             </div>
           </div>
         </section>
-
-        <section className="section quote-section">
-          <div className="container quote-grid">
-            <div className="quote-intro"><span className="eyebrow">Loved by pet parents</span><h2>“它回家后，居然还想再来。”</h2><p>我们收集了很多这样的时刻，也把每一条反馈都放进下一次护理里。</p></div>
-            <div className="quote-card"><div className="quote-mark">“</div><blockquote>以前洗完澡回家要躲半天，现在在门口就知道要来找姐姐，真的放心很多。</blockquote><div className="quote-author"><span><strong>豆包妈妈 · 养宠 3 年</strong><span>比熊犬 / 规律洗护</span></span><span className="stars" aria-label="五星好评">★★★★★</span></div></div>
-          </div>
-        </section>
+        <Testimonials items={testimonials} />
 
         <Faq items={faqItems} />
 
