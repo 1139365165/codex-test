@@ -20,6 +20,7 @@ export default function Header() {
           <div className="nav-links" aria-label="主导航">
             <a href="#services" onClick={closeMenu}>服务项目</a>
             <a href="#why-us" onClick={closeMenu}>为什么选我们</a>
+            <a href="#reviews" onClick={closeMenu}>客户评价</a>
             <a href="#faq" onClick={closeMenu}>常见问题</a>
           </div>
           <a className="nav-cta" href="#booking" onClick={closeMenu}>

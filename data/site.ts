@@ -74,6 +74,58 @@ export const processSteps: readonly ProcessStep[] = [
   },
 ] as const;
 
+export type Testimonial = {
+  quote: string;
+  author: string;
+  pet: string;
+  service: string;
+  rating: 5;
+};
+
+export const testimonials: readonly Testimonial[] = [
+  {
+    quote: "以前洗完澡回家要躲半天，现在在门口就知道要来找姐姐，真的放心很多。",
+    author: "豆包妈妈 · 养宠 3 年",
+    pet: "比熊犬",
+    service: "规律洗护",
+    rating: 5,
+  },
+  {
+    quote: "我家猫特别怕吹风机，这里会先安抚再慢慢来。第一次全程没有炸毛，回家还安静舔了半小时毛。",
+    author: "布丁爸爸 · 养宠 5 年",
+    pet: "英短猫",
+    service: "猫咪舒缓洗护",
+    rating: 5,
+  },
+  {
+    quote: "造型剪得很自然，不是那种夸张的“美容脸”。老师会先确认长度，过程中也会随时告诉我们状态。",
+    author: "Momo 妈妈 · 养宠 4 年",
+    pet: "贵宾犬",
+    service: "造型修剪",
+    rating: 5,
+  },
+  {
+    quote: "老年犬腰椎不好，他们全程垫软垫、动作很轻。结束时还写了护理小报告，回家怎么梳毛都写清楚了。",
+    author: "旺财爷爷 · 养宠 8 年",
+    pet: "金毛寻回犬",
+    service: "深层呵护加购",
+    rating: 5,
+  },
+  {
+    quote: "预约时提醒得很细，带什么、几点到、结束后有没有空位等候都说清楚，体验比想象中更省心。",
+    author: "糯米阿姨 · 养宠 2 年",
+    pet: "柯基犬",
+    service: "狗狗清爽洗护",
+    rating: 5,
+  },
+  {
+    quote: "小猫第一次外出洗澡，我以为会很崩溃。没想到接它时，它居然趴在护理师腿上打盹，真的太治愈了。",
+    author: "橘子姐姐 · 养宠 1 年",
+    pet: "橘猫",
+    service: "猫咪舒缓洗护",
+    rating: 5,
+  },
+] as const;
 export const faqItems: readonly FaqItem[] = [
   {
     question: "需要提前多久预约？",

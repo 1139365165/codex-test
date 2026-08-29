@@ -60,3 +60,6 @@ playwright-report/
 Thumbs.db
 .idea/
 .vscode/
+
+# --- Local pnpm content-addressable store ---
+.pnpm-store/
