@@ -101,7 +101,6 @@ export const storeDetails: readonly StoreDetail[] = [
 ] as const;
 
 export const mapLinks = {
-  embed: "https://api.map.baidu.com/marker?location=31.2243%2C121.4333&title=MOMO%E6%AF%9B%E7%90%83%E7%A0%94%E7%A9%B6%E6%89%80&content=%E4%B8%8A%E6%B5%B7%E5%B8%82%E9%9D%99%E5%AE%89%E5%8C%BA%E6%84%9A%E5%9B%AD%E8%B7%AF88%E5%8F%B7&output=html",
   amap: "https://uri.amap.com/navigation?to=121.4333%2C31.2243%2CMOMO%E6%AF%9B%E7%90%83%E7%A0%94%E7%A9%B6%E6%89%80&mode=car",
   baidu: "https://api.map.baidu.com/marker?location=31.2243%2C121.4333&title=MOMO%E6%AF%9B%E7%90%83%E7%A0%94%E7%A9%B6%E6%89%80&content=%E4%B8%8A%E6%B5%B7%E5%B8%82%E9%9D%99%E5%AE%89%E5%8C%BA%E6%84%9A%E5%9B%AD%E8%B7%AF88%E5%8F%B7&output=html",
 } as const;

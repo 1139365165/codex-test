@@ -145,7 +145,13 @@ export default function Home() {
           <div className="container map-grid">
             <div className="map-visual">
               <div className="map-embed">
-                <iframe title="MOMO 毛球研究所门店位置地图" src={mapLinks.embed} loading="lazy" referrerPolicy="no-referrer-when-downgrade" />
+                <Image
+                  src="/images/anime-map.png"
+                  alt="愚园路一带的二次元风格手绘地图，标注 MOMO 毛球研究所门店位置"
+                  fill
+                  sizes="(max-width: 980px) 100vw, 56vw"
+                  className="map-image"
+                />
               </div>
               <div className="map-actions">
                 <a className="map-action primary" href={mapLinks.amap} target="_blank" rel="noopener noreferrer">高德地图导航 <span aria-hidden="true">↗</span></a>
