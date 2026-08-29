@@ -1,0 +1,62 @@
+# --- Dependencies ---
+node_modules/
+
+# --- Next.js build output ---
+.next/
+out/
+build/
+
+# --- Logs ---
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# --- Dev server temp files ---
+.next-dev.err.log
+.next-dev.out.log
+.next-dev.pid
+
+# --- Environment / secrets ---
+.env
+.env.*
+!.env.example
+
+# --- Browser automation / test artifacts ---
+.playwright/
+.playwright-cli/
+test-results/
+playwright-report/
+
+# --- Local Codex tooling (project-scoped skills) ---
+.codex/
+
+# --- Dev/test screenshots at repo root ---
+/desktop-final.png
+/desktop-home.png
+/map-desktop.png
+/map-mobile.png
+/mobile-final.png
+/mobile-home.png
+/next-booking-desktop.png
+/next-booking-mobile.png
+/next-desktop-home.png
+/next-map-desktop.png
+/next-map-mobile.png
+/next-mobile-home.png
+/agnes-test-new.png
+/agnes-test-new-image.png
+
+# --- Browser page dumps ---
+/agnes-*.yml
+
+# --- Temp / placeholder files ---
+/patch.txt
+
+# --- OS / editor files ---
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

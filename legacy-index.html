@@ -1,0 +1,529 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f7f2e9" />
+    <meta name="description" content="MOMO 毛球研究所：给毛孩子一个被温柔对待的洗护日常。" />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23e77955'/%3E%3Cpath d='m32 14 4.5 12.5L49 32l-12.5 5.5L32 50l-4.5-12.5L15 32l12.5-5.5L32 14Z' fill='%23fffdf9'/%3E%3C/svg%3E" />
+  <title>MOMO 毛球研究所｜宠物洗护</title>
+  <style>
+    :root {
+      --ink: #2f352e;
+      --muted: #72776d;
+      --paper: #f7f2e9;
+      --paper-deep: #efe7da;
+      --white: #fffdf9;
+      --sage: #aabbaa;
+      --sage-deep: #566d5b;
+      --coral: #e77955;
+      --coral-soft: #f5d3c4;
+      --line: rgba(47, 53, 46, .13);
+      --shadow: 0 24px 60px rgba(67, 62, 51, .12);
+      --radius-lg: 30px;
+      --radius-md: 18px;
+      --max: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    button, input, select { font: inherit; }
+    button { cursor: pointer; }
+    :focus-visible { outline: 3px solid rgba(231,121,85,.55); outline-offset: 3px; }
+
+    .page-shell { overflow: hidden; }
+    .container { width: min(var(--max), calc(100% - 48px)); margin: 0 auto; }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--coral);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+    .eyebrow::before { content: ""; width: 26px; height: 2px; background: currentColor; border-radius: 2px; }
+    h1, h2, h3, p { margin: 0; }
+    h1, h2, h3 { letter-spacing: -.04em; line-height: 1.08; }
+    h1 { font-size: clamp(46px, 7vw, 78px); max-width: 640px; }
+    h2 { font-size: clamp(34px, 4.4vw, 54px); }
+    h3 { font-size: 22px; }
+    .section { padding: 112px 0; }
+
+    .site-header {
+      position: absolute;
+      inset: 0 0 auto;
+      z-index: 10;
+      padding: 22px 0;
+    }
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .brand { display: inline-flex; align-items: center; gap: 12px; font-weight: 900; letter-spacing: -.03em; }
+    .brand-mark {
+      display: grid;
+      place-items: center;
+      width: 40px;
+      height: 40px;
+      color: var(--white);
+      background: var(--coral);
+      border-radius: 13px 13px 13px 4px;
+      box-shadow: 0 8px 18px rgba(231,121,85,.22);
+      font-size: 20px;
+    }
+    .brand-copy { display: grid; gap: 1px; }
+    .brand-copy strong { font-size: 17px; }
+    .brand-copy span { color: var(--muted); font-size: 11px; font-weight: 700; letter-spacing: .08em; }
+    .nav-links { display: flex; align-items: center; gap: 30px; color: #5d6258; font-size: 14px; font-weight: 700; }
+    .nav-links a { transition: color .2s ease; }
+    .nav-links a:hover { color: var(--coral); }
+    .nav-cta, .button-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 46px;
+      padding: 0 20px;
+      color: var(--white);
+      background: var(--ink);
+      border: 0;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 800;
+      box-shadow: 0 12px 24px rgba(47,53,46,.16);
+      transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+    }
+    .nav-cta:hover, .button-primary:hover { transform: translateY(-2px); box-shadow: 0 16px 28px rgba(47,53,46,.2); }
+    .button-primary { min-height: 56px; padding: 0 26px; background: var(--coral); box-shadow: 0 14px 26px rgba(231,121,85,.24); }
+    .button-primary:hover { background: #d86543; box-shadow: 0 18px 30px rgba(231,121,85,.3); }
+    .button-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 56px;
+      padding: 0 23px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--ink);
+      background: rgba(255,253,249,.54);
+      font-size: 14px;
+      font-weight: 800;
+      transition: border-color .2s ease, background .2s ease;
+    }
+    .button-secondary:hover { border-color: var(--sage-deep); background: var(--white); }
+    .mobile-toggle { display: none; border: 0; background: transparent; padding: 8px; color: var(--ink); }
+    .mobile-toggle svg { width: 24px; height: 24px; }
+
+    .hero { position: relative; min-height: 780px; padding: 150px 0 88px; display: flex; align-items: center; }
+    .hero::before { content: ""; position: absolute; width: 560px; height: 560px; top: -300px; left: -250px; border-radius: 50%; background: rgba(245,211,196,.48); filter: blur(2px); }
+    .hero-grid { position: relative; z-index: 1; display: grid; grid-template-columns: .92fr 1.08fr; align-items: center; gap: 68px; }
+    .hero-copy { padding-bottom: 16px; }
+    .hero-copy .eyebrow { margin-bottom: 26px; }
+    .hero-copy h1 { margin-bottom: 24px; }
+    .hero-copy h1 em { color: var(--coral); font-style: normal; }
+    .hero-lede { max-width: 510px; color: var(--muted); font-size: 17px; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 34px; }
+    .hero-notes { display: flex; flex-wrap: wrap; gap: 12px 24px; margin-top: 28px; color: var(--muted); font-size: 13px; font-weight: 700; }
+    .hero-notes span { display: inline-flex; align-items: center; gap: 7px; }
+    .hero-notes i { display: inline-grid; place-items: center; width: 18px; height: 18px; color: var(--sage-deep); background: rgba(170,187,170,.33); border-radius: 50%; font-size: 11px; font-style: normal; }
+    .hero-visual { position: relative; }
+    .hero-image-wrap { position: relative; padding: 14px; border-radius: 34px; background: rgba(255,253,249,.62); box-shadow: var(--shadow); transform: rotate(1.6deg); }
+    .hero-image-wrap::after { content: ""; position: absolute; inset: 24px -18px -18px 28px; z-index: -1; border: 1px solid rgba(170,187,170,.55); border-radius: 34px; transform: rotate(-3deg); }
+    .hero-image-crop { overflow: hidden; aspect-ratio: 16 / 10.5; border-radius: 24px; }
+    .hero-image { display: block; width: 168%; max-width: none; height: 100%; object-fit: cover; object-position: center; transform: translateX(-40.5%); }
+    .hero-sticker { position: absolute; left: -26px; bottom: -24px; display: grid; place-items: center; width: 126px; height: 126px; padding: 18px; color: var(--white); background: var(--sage-deep); border-radius: 50%; box-shadow: 0 18px 30px rgba(86,109,91,.25); text-align: center; font-size: 13px; font-weight: 800; line-height: 1.35; transform: rotate(-9deg); }
+    .hero-sticker strong { display: block; color: #dbe8d8; font-size: 22px; letter-spacing: -.05em; }
+
+    .trust-strip { padding: 26px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: rgba(255,253,249,.32); }
+    .trust-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+    .trust-item { display: flex; align-items: center; gap: 14px; }
+    .trust-icon { display: grid; place-items: center; flex: 0 0 42px; width: 42px; height: 42px; color: var(--sage-deep); background: rgba(170,187,170,.3); border-radius: 14px; }
+    .trust-icon svg { width: 21px; height: 21px; }
+    .trust-item strong { display: block; font-size: 14px; }
+    .trust-item span { display: block; color: var(--muted); font-size: 12px; }
+
+    .section-heading { display: flex; justify-content: space-between; align-items: end; gap: 24px; margin-bottom: 46px; }
+    .section-heading > div { max-width: 600px; }
+    .section-heading .eyebrow { margin-bottom: 18px; }
+    .section-heading p { max-width: 410px; color: var(--muted); font-size: 15px; }
+    .services { background: var(--white); }
+    .service-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+    .service-card { position: relative; display: flex; min-height: 314px; flex-direction: column; padding: 25px; border: 1px solid rgba(47,53,46,.09); border-radius: var(--radius-md); background: var(--paper); transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease; }
+    .service-card:hover { transform: translateY(-7px); border-color: rgba(231,121,85,.3); box-shadow: 0 18px 34px rgba(67,62,51,.1); }
+    .service-card.featured { color: var(--white); background: var(--sage-deep); border-color: transparent; }
+    .service-card.featured .service-icon { color: var(--sage-deep); background: #dbe8d8; }
+    .service-card.featured .service-meta, .service-card.featured .service-desc { color: rgba(255,253,249,.72); }
+    .service-card.featured .service-link { color: #fff3dc; }
+    .service-icon { display: grid; place-items: center; width: 48px; height: 48px; margin-bottom: 28px; color: var(--coral); background: var(--coral-soft); border-radius: 15px; }
+    .service-icon svg { width: 24px; height: 24px; }
+    .service-card h3 { margin-bottom: 10px; font-size: 21px; }
+    .service-meta { color: var(--coral); font-size: 13px; font-weight: 800; }
+    .service-desc { margin-top: 14px; color: var(--muted); font-size: 14px; }
+    .service-link { display: inline-flex; align-items: center; gap: 7px; margin-top: auto; padding-top: 22px; color: var(--ink); font-size: 13px; font-weight: 800; }
+    .service-link span { transition: transform .2s ease; }
+    .service-card:hover .service-link span { transform: translateX(4px); }
+
+    .why-grid { display: grid; grid-template-columns: 1.03fr .97fr; align-items: center; gap: 76px; }
+    .photo-stack { position: relative; min-height: 530px; }
+    .photo-main { position: absolute; inset: 0 42px 42px 0; width: calc(100% - 42px); height: calc(100% - 42px); object-fit: cover; border-radius: 30px; box-shadow: var(--shadow); }
+    .photo-float { position: absolute; right: 0; bottom: 0; width: 50%; padding: 10px; background: var(--paper); border-radius: 22px; box-shadow: 0 18px 34px rgba(67,62,51,.16); transform: rotate(4deg); }
+    .photo-float img { width: 100%; aspect-ratio: 1 / .8; object-fit: cover; border-radius: 14px; }
+    .why-copy .eyebrow { margin-bottom: 18px; }
+    .why-copy h2 { max-width: 500px; margin-bottom: 21px; }
+    .why-copy > p { max-width: 520px; color: var(--muted); font-size: 16px; }
+    .benefit-list { display: grid; gap: 17px; margin: 31px 0 0; padding: 0; list-style: none; }
+    .benefit-list li { display: grid; grid-template-columns: 35px 1fr; gap: 13px; align-items: start; }
+    .benefit-list i { display: grid; place-items: center; width: 35px; height: 35px; color: var(--sage-deep); background: rgba(170,187,170,.32); border-radius: 12px; font-style: normal; font-size: 16px; }
+    .benefit-list strong { display: block; margin-bottom: 2px; font-size: 15px; }
+    .benefit-list span { color: var(--muted); font-size: 13px; }
+
+    .process { background: var(--paper-deep); }
+    .process-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+    .process-card { padding: 25px; border: 1px solid rgba(47,53,46,.1); border-radius: var(--radius-md); background: rgba(255,253,249,.48); }
+    .process-number { display: flex; align-items: center; justify-content: space-between; color: var(--coral); font-size: 13px; font-weight: 900; letter-spacing: .1em; }
+    .process-number::after { content: "↗"; display: grid; place-items: center; width: 30px; height: 30px; color: var(--ink); border: 1px solid var(--line); border-radius: 50%; font-size: 14px; }
+    .process-card h3 { margin: 32px 0 10px; font-size: 19px; }
+    .process-card p { color: var(--muted); font-size: 14px; }
+
+    .quote-section { background: var(--sage-deep); color: var(--white); }
+    .quote-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: 70px; align-items: start; }
+    .quote-intro .eyebrow { color: #f5c1aa; }
+    .quote-intro h2 { margin-top: 18px; max-width: 360px; }
+    .quote-intro p { max-width: 330px; margin-top: 20px; color: rgba(255,253,249,.72); font-size: 15px; }
+    .quote-card { padding: 38px; border-radius: 26px; background: var(--white); color: var(--ink); box-shadow: 0 22px 50px rgba(30,47,35,.2); }
+    .quote-mark { color: var(--coral); font-family: Georgia, serif; font-size: 60px; line-height: .7; }
+    .quote-card blockquote { margin: 17px 0 26px; font-size: clamp(22px, 3vw, 31px); font-weight: 800; letter-spacing: -.04em; line-height: 1.25; }
+    .quote-author { display: flex; align-items: center; justify-content: space-between; gap: 18px; padding-top: 18px; border-top: 1px solid var(--line); }
+    .quote-author strong { display: block; font-size: 14px; }
+    .quote-author span { color: var(--muted); font-size: 12px; }
+    .stars { color: var(--coral); font-size: 16px; letter-spacing: .12em; }
+
+    .faq-grid { display: grid; grid-template-columns: .78fr 1.22fr; gap: 90px; align-items: start; }
+    .faq-intro .eyebrow { margin-bottom: 18px; }
+    .faq-intro p { max-width: 320px; margin-top: 20px; color: var(--muted); font-size: 15px; }
+    .faq-list { border-top: 1px solid var(--line); }
+    .faq-item { border-bottom: 1px solid var(--line); }
+    .faq-question { display: flex; align-items: center; justify-content: space-between; gap: 20px; width: 100%; padding: 21px 0; border: 0; color: var(--ink); background: transparent; text-align: left; font-size: 16px; font-weight: 800; }
+    .faq-question span { display: grid; place-items: center; flex: 0 0 28px; width: 28px; height: 28px; color: var(--coral); border: 1px solid rgba(231,121,85,.42); border-radius: 50%; font-size: 20px; font-weight: 400; transition: transform .25s ease, background .25s ease; }
+    .faq-answer { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .3s ease; }
+    .faq-answer > div { overflow: hidden; }
+    .faq-answer p { padding: 0 50px 0 0; color: var(--muted); font-size: 14px; }
+    .faq-item.open .faq-answer { grid-template-rows: 1fr; }
+    .faq-item.open .faq-answer p { padding-bottom: 21px; }
+    .faq-item.open .faq-question span { color: var(--white); background: var(--coral); transform: rotate(45deg); }
+
+    .map-section { background: var(--white); }
+    .map-grid { display: grid; grid-template-columns: 1.12fr .88fr; gap: 52px; align-items: stretch; }
+    .map-visual { display: grid; gap: 14px; }
+    .map-embed { position: relative; min-height: 440px; overflow: hidden; border: 1px solid var(--line); border-radius: 24px; background: var(--paper-deep); box-shadow: var(--shadow); }
+    .map-embed iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+    .map-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+    .map-action {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 46px;
+      padding: 0 18px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--ink);
+      background: var(--paper);
+      font-size: 13px;
+      font-weight: 800;
+      transition: border-color .2s ease, background .2s ease;
+    }
+    .map-action:hover { border-color: var(--sage-deep); background: var(--white); }
+    .map-action.primary { color: var(--white); background: var(--sage-deep); border-color: transparent; }
+    .map-action.primary:hover { background: #486252; }
+    .map-info { display: flex; flex-direction: column; justify-content: center; }
+    .map-info .eyebrow { margin-bottom: 18px; }
+    .map-info h2 { max-width: 480px; margin-bottom: 20px; }
+    .map-info > p { max-width: 470px; color: var(--muted); font-size: 15px; }
+    .map-details { display: grid; gap: 0; margin-top: 28px; border-top: 1px solid var(--line); }
+    .map-detail { display: grid; grid-template-columns: 38px 1fr; gap: 13px; padding: 15px 0; border-bottom: 1px solid var(--line); }
+    .map-detail i {
+      display: grid;
+      place-items: center;
+      width: 34px;
+      height: 34px;
+      color: var(--coral);
+      background: var(--coral-soft);
+      border-radius: 11px;
+      font-size: 15px;
+      font-style: normal;
+    }
+    .map-detail strong { display: block; margin-bottom: 2px; font-size: 14px; }
+    .map-detail span { color: var(--muted); font-size: 13px; }
+
+    .booking { padding-top: 34px; }
+    .booking-card { display: grid; grid-template-columns: .9fr 1.1fr; gap: 48px; padding: 56px; border-radius: 30px; background: var(--coral); color: var(--white); box-shadow: var(--shadow); }
+    .booking-copy .eyebrow { color: #fff0db; }
+    .booking-copy h2 { margin-top: 18px; max-width: 420px; }
+    .booking-copy p { max-width: 350px; margin-top: 20px; color: rgba(255,253,249,.78); font-size: 15px; }
+    .booking-detail { display: grid; gap: 12px; margin-top: 30px; color: rgba(255,253,249,.82); font-size: 13px; }
+    .booking-detail span { display: flex; align-items: center; gap: 10px; }
+    .booking-form { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; align-content: center; }
+    .field { display: grid; gap: 7px; }
+    .field.full { grid-column: 1 / -1; }
+    .field label { color: rgba(255,253,249,.82); font-size: 12px; font-weight: 800; }
+    .field input, .field select { width: 100%; min-height: 50px; padding: 0 15px; border: 1px solid rgba(255,253,249,.28); border-radius: 13px; outline: none; color: var(--ink); background: rgba(255,253,249,.95); }
+    .field input:focus, .field select:focus { border-color: var(--ink); box-shadow: 0 0 0 3px rgba(47,53,46,.12); }
+    .form-submit { grid-column: 1 / -1; display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-top: 5px; }
+    .form-submit small { color: rgba(255,253,249,.76); font-size: 11px; }
+    .form-submit button { min-height: 50px; padding: 0 24px; color: var(--ink); background: var(--white); border: 0; border-radius: 999px; font-weight: 900; transition: transform .2s ease; }
+    .form-submit button:hover { transform: translateY(-2px); }
+    .form-message { display: none; grid-column: 1 / -1; padding: 12px 15px; border-radius: 12px; color: var(--ink); background: #fff2dd; font-size: 13px; font-weight: 700; }
+    .form-message.show { display: block; }
+
+    footer { padding: 42px 0 94px; }
+    .footer-grid { display: flex; justify-content: space-between; gap: 30px; align-items: start; }
+    .footer-copy { color: var(--muted); font-size: 13px; }
+    .footer-copy p { margin-top: 12px; max-width: 280px; }
+    .footer-links { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 12px 26px; color: var(--muted); font-size: 13px; font-weight: 700; }
+    .footer-links a:hover { color: var(--coral); }
+    .floating-book { display: none; }
+
+    @media (max-width: 980px) {
+      .hero-grid, .why-grid, .quote-grid, .faq-grid, .map-grid, .booking-card { grid-template-columns: 1fr; }
+      .hero { min-height: auto; padding-top: 130px; }
+      .hero-copy { max-width: 680px; }
+      .hero-visual { max-width: 760px; margin: 18px auto 0; }
+      .service-grid, .process-grid { grid-template-columns: repeat(2, 1fr); }
+      .trust-grid { grid-template-columns: repeat(2, 1fr); }
+      .why-grid { gap: 42px; }
+      .photo-stack { min-height: 520px; max-width: 640px; }
+      .quote-grid, .faq-grid { gap: 34px; }
+      .map-grid { gap: 32px; }
+      .map-embed { min-height: 380px; }
+      .booking-card { padding: 42px; gap: 34px; }
+    }
+
+    @media (max-width: 700px) {
+      .container { width: min(var(--max), calc(100% - 32px)); }
+      .section { padding: 78px 0; }
+      .site-header { padding: 16px 0; }
+      .nav-links, .nav-cta { display: none; }
+      .mobile-toggle { display: block; }
+      .nav.mobile-open { flex-wrap: wrap; }
+      .nav.mobile-open .nav-links { display: grid; order: 3; grid-template-columns: repeat(3, 1fr); width: 100%; padding: 16px; border: 1px solid var(--line); border-radius: 16px; background: rgba(255,253,249,.96); text-align: center; box-shadow: 0 14px 28px rgba(67,62,51,.1); }
+      .hero { padding: 112px 0 60px; }
+      .hero-grid { gap: 42px; }
+      h1 { font-size: clamp(42px, 14vw, 62px); }
+      .hero-lede { font-size: 15px; }
+      .hero-actions { align-items: stretch; flex-direction: column; }
+      .hero-actions a { width: 100%; }
+      .hero-notes { gap: 10px 16px; font-size: 12px; }
+      .hero-image-wrap { padding: 8px; border-radius: 25px; }
+      .hero-image-crop { aspect-ratio: 1 / 1.02; border-radius: 18px; }
+      .hero-image { width: 178%; transform: translateX(-43.5%); }
+      .hero-sticker { left: auto; right: -4px; bottom: -22px; width: 98px; height: 98px; padding: 13px; font-size: 11px; }
+      .hero-sticker strong { font-size: 18px; }
+      .trust-grid { gap: 18px 10px; }
+      .trust-item { gap: 9px; }
+      .trust-icon { flex-basis: 35px; width: 35px; height: 35px; border-radius: 11px; }
+      .trust-item strong { font-size: 12px; }
+      .trust-item span { font-size: 11px; }
+      .section-heading { display: block; margin-bottom: 31px; }
+      .section-heading p { margin-top: 16px; }
+      .service-grid, .process-grid { grid-template-columns: 1fr; }
+      .service-card { min-height: 264px; }
+      .photo-stack { min-height: 370px; }
+      .photo-main { inset: 0 28px 28px 0; width: calc(100% - 28px); height: calc(100% - 28px); border-radius: 22px; }
+      .photo-float { width: 52%; padding: 7px; border-radius: 15px; }
+      .photo-float img { border-radius: 10px; }
+      .benefit-list { gap: 14px; }
+      .quote-card { padding: 28px 22px; }
+      .quote-author { align-items: flex-start; flex-direction: column; }
+      .map-embed { min-height: 300px; border-radius: 18px; }
+      .map-actions a { flex: 1 1 100%; }
+      .booking-card { padding: 31px 22px; border-radius: 24px; }
+      .booking-form { grid-template-columns: 1fr; }
+      .field.full, .form-submit, .form-message { grid-column: auto; }
+      .form-submit { align-items: stretch; flex-direction: column; }
+      .form-submit button { width: 100%; }
+      .footer-grid { flex-direction: column; }
+      .footer-links { justify-content: flex-start; }
+      .floating-book { position: fixed; right: 16px; bottom: 16px; z-index: 20; display: inline-flex; align-items: center; gap: 8px; min-height: 48px; padding: 0 17px; color: var(--white); background: var(--ink); border-radius: 999px; box-shadow: 0 12px 24px rgba(47,53,46,.24); font-size: 13px; font-weight: 800; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-shell">
+    <header class="site-header">
+      <div class="container">
+        <nav class="nav" id="nav">
+          <a class="brand" href="#top" aria-label="MOMO 毛球研究所首页">
+            <span class="brand-mark">✦</span>
+            <span class="brand-copy"><strong>MOMO 毛球研究所</strong><span>GROOMING STUDIO</span></span>
+          </a>
+          <div class="nav-links" aria-label="主导航">
+            <a href="#services">服务项目</a>
+            <a href="#why-us">为什么选我们</a>
+            <a href="#faq">常见问题</a>
+          </div>
+          <a class="nav-cta" href="#booking">预约洗护 <span aria-hidden="true">↗</span></a>
+          <button class="mobile-toggle" type="button" aria-label="打开菜单" aria-expanded="false" id="mobileToggle">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 7h16M4 12h16M4 17h16" stroke-linecap="round"/></svg>
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div class="container hero-grid">
+          <div class="hero-copy">
+            <span class="eyebrow">A softer kind of grooming</span>
+            <h1>让每一次洗护，<em>都像被拥抱。</em></h1>
+            <p class="hero-lede">在 MOMO，我们把洗澡、吹毛和修剪变成一段安静、舒服、值得期待的日常。</p>
+            <div class="hero-actions">
+              <a class="button-primary" href="#booking">为毛孩子预约 <span aria-hidden="true">↗</span></a>
+              <a class="button-secondary" href="#services">看看服务与价格</a>
+            </div>
+            <div class="hero-notes" aria-label="服务承诺">
+              <span><i>✓</i>全程可视护理</span>
+              <span><i>✓</i>一宠一浴巾</span>
+              <span><i>✓</i>温和无刺激</span>
+            </div>
+          </div>
+          <div class="hero-visual">
+            <div class="hero-image-wrap">
+              <div class="hero-image-crop"><img class="hero-image" src="assets/hero-pet-grooming.png" alt="在明亮洗护空间里坐着的贵宾犬和银色虎斑猫" /></div>
+            </div>
+            <div class="hero-sticker"><strong>4.9 / 5</strong>毛孩子家长<br/>真实好评</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="trust-strip" aria-label="门店数据">
+        <div class="container trust-grid">
+          <div class="trust-item"><span class="trust-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 21s7-4.8 7-11a7 7 0 0 0-14 0c0 6.2 7 11 7 11Z"/><circle cx="12" cy="10" r="2.4"/></svg></span><span><strong>静安店 · 近地铁</strong><span>步行 3 分钟即到</span></span></div>
+          <div class="trust-item"><span class="trust-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 3 14.5 8l5.5.8-4 3.9.9 5.5-4.9-2.6-4.9 2.6.9-5.5-4-3.9L9.5 8 12 3Z"/></svg></span><span><strong>8 年专业护理</strong><span>猫狗美容师认证团队</span></span></div>
+          <div class="trust-item"><span class="trust-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 12.5 9 17l11-11" stroke-linecap="round" stroke-linejoin="round"/><path d="M20 12a8 8 0 1 1-4.9-7.4" stroke-linecap="round"/></svg></span><span><strong>100% 安心可视</strong><span>透明护理不留盲区</span></span></div>
+          <div class="trust-item"><span class="trust-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 21c4.4-2 7-5.2 7-9.2V5.5L12 3 5 5.5v6.3C5 15.8 7.6 19 12 21Z"/><path d="m9 12 2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span><strong>安心用品</strong><span>按毛发与肤质定制</span></span></div>
+        </div>
+      </section>
+
+      <section class="section services" id="services">
+        <div class="container">
+          <div class="section-heading">
+            <div><span class="eyebrow">Our services</span><h2>从基础清洁，到<br/>被认真对待。</h2></div>
+            <p>每一项服务都从了解毛孩子开始，按体型、毛发和情绪状态给出刚刚好的护理方案。</p>
+          </div>
+          <div class="service-grid">
+            <article class="service-card featured"><span class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M7 10.5V8a5 5 0 0 1 10 0v2.5"/><path d="M5.5 11.5h13v3a5.5 5.5 0 0 1-11 0v-3Z"/><path d="M9 18.5v2M15 18.5v2" stroke-linecap="round"/></svg></span><h3>狗狗清爽洗护</h3><span class="service-meta">¥ 168 起 · 约 90 分钟</span><p class="service-desc">清洁、护毛、剪甲、耳道护理，适合日常维持。</p><a class="service-link" href="#booking">了解详情 <span>↗</span></a></article>
+            <article class="service-card"><span class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M7.2 12.2 5 7.5 8.5 5 12 8.5 15.5 5 19 7.5l-2.2 4.7"/><path d="M6.5 12.5c0 4 2.3 6.5 5.5 6.5s5.5-2.5 5.5-6.5"/><path d="M9 14h.01M15 14h.01" stroke-linecap="round"/></svg></span><h3>猫咪舒缓洗护</h3><span class="service-meta">¥ 198 起 · 约 100 分钟</span><p class="service-desc">低噪环境、缓慢安抚，给敏感小猫更自在的体验。</p><a class="service-link" href="#booking">了解详情 <span>↗</span></a></article>
+            <article class="service-card"><span class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 8h16M4 12h16M4 16h16" stroke-linecap="round"/><path d="M8 5v14M16 5v14" stroke-linecap="round"/></svg></span><h3>造型修剪</h3><span class="service-meta">¥ 238 起 · 约 120 分钟</span><p class="service-desc">根据品种和生活习惯，剪出轻松好打理的轮廓。</p><a class="service-link" href="#booking">了解详情 <span>↗</span></a></article>
+            <article class="service-card"><span class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 3c2.5 3.5 5 5.4 5 9.2A5 5 0 0 1 7 12.2C7 8.4 9.5 6.5 12 3Z"/><path d="M9.5 13.5c0 1.5 1 2.7 2.5 3" stroke-linecap="round"/></svg></span><h3>深层呵护加购</h3><span class="service-meta">¥ 58 起 · 按需添加</span><p class="service-desc">保湿泥膜、精油护爪、去浮毛等，让细节也被照顾。</p><a class="service-link" href="#booking">了解详情 <span>↗</span></a></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="why-us">
+        <div class="container why-grid">
+          <div class="photo-stack">
+            <img class="photo-main" src="assets/grooming-care.png" alt="美容师在洗护台为白色比熊犬擦干毛发" />
+            <div class="photo-float"><img src="assets/salon-interior.png" alt="MOMO 毛球研究所明亮整洁的门店环境" /></div>
+          </div>
+          <div class="why-copy"><span class="eyebrow">The MOMO way</span><h2>我们知道，<br/>安心比漂亮更重要。</h2><p>洗得干净只是开始。我们在乎毛孩子有没有紧张、皮肤是不是舒服，也在乎你接回家时的那句“它今天好乖”。</p><ul class="benefit-list"><li><i>◌</i><span><strong>一宠一方案</strong><span>到店先做毛发与肤质观察，再决定洗护产品和流程。</span></span></li><li><i>⌁</i><span><strong>慢一点，也没关系</strong><span>不催、不强求，给怕水或敏感的毛孩子足够适应时间。</span></span></li><li><i>⊙</i><span><strong>过程透明可见</strong><span>透明玻璃护理区，家长可以安心看见每一个步骤。</span></span></li></ul></div>
+        </div>
+      </section>
+
+      <section class="section process">
+        <div class="container">
+          <div class="section-heading"><div><span class="eyebrow">A gentle routine</span><h2>每一步，都有回应。</h2></div><p>把复杂留给我们，把轻松还给你和毛孩子。</p></div>
+          <div class="process-grid"><article class="process-card"><span class="process-number">01 / 到店</span><h3>先认识，再开始</h3><p>记录习惯、禁忌与当日状态，确认今天最适合的护理方式。</p></article><article class="process-card"><span class="process-number">02 / 清洁</span><h3>温和洗净每一层</h3><p>按毛发类型调节水温、风量与产品浓度，减少不适和拉扯。</p></article><article class="process-card"><span class="process-number">03 / 修护</span><h3>把细节照顾好</h3><p>剪甲、耳道、脚底与毛发修整，一个步骤都不草率。</p></article><article class="process-card"><span class="process-number">04 / 回家</span><h3>带走一份小报告</h3><p>告诉你今天的护理记录与居家建议，方便下次更懂它。</p></article></div>
+        </div>
+      </section>
+
+      <section class="section quote-section">
+        <div class="container quote-grid"><div class="quote-intro"><span class="eyebrow">Loved by pet parents</span><h2>“它回家后，居然还想再来。”</h2><p>我们收集了很多这样的时刻，也把每一条反馈都放进下一次护理里。</p></div><div class="quote-card"><div class="quote-mark">“</div><blockquote>以前洗完澡回家要躲半天，现在在门口就知道要来找姐姐，真的放心很多。</blockquote><div class="quote-author"><span><strong>豆包妈妈 · 养宠 3 年</strong><span>比熊犬 / 规律洗护</span></span><span class="stars" aria-label="五星好评">★★★★★</span></div></div></div>
+      </section>
+
+      <section class="section" id="faq">
+        <div class="container faq-grid"><div class="faq-intro"><span class="eyebrow">Good to know</span><h2>第一次来，<br/>想知道什么？</h2><p>如果还有没被回答的问题，欢迎直接电话或微信联系我们。</p></div><div class="faq-list"><div class="faq-item open"><button class="faq-question" type="button" aria-expanded="true">需要提前多久预约？<span>＋</span></button><div class="faq-answer"><div><p>建议提前 2–3 天预约，周末和节假日会更早满位。临时有空档时，我们也会在社交平台更新。</p></div></div></div><div class="faq-item"><button class="faq-question" type="button" aria-expanded="false">猫咪和狗狗会分开护理吗？<span>＋</span></button><div class="faq-answer"><div><p>会的。猫咪有独立的低噪护理时段和空间，尽量减少陌生声音与气味带来的紧张。</p></div></div></div><div class="faq-item"><button class="faq-question" type="button" aria-expanded="false">洗护前需要准备什么？<span>＋</span></button><div class="faq-answer"><div><p>带上牵引或航空箱即可。如果有过敏史、皮肤问题或特别抗拒的部位，请在预约时告诉我们。</p></div></div></div><div class="faq-item"><button class="faq-question" type="button" aria-expanded="false">可以在现场等候吗？<span>＋</span></button><div class="faq-answer"><div><p>可以。店内有休息区，也可以通过透明护理窗看到过程。完整服务结束后我们会第一时间通知你。</p></div></div></div></div></div>
+      </section>
+
+      <section class="section map-section" id="map">
+        <div class="container map-grid">
+          <div class="map-visual">
+            <div class="map-embed">
+              <iframe title="MOMO 毛球研究所门店位置地图" src="https://www.openstreetmap.org/export/embed.html?bbox=121.4248%2C31.2188%2C121.4418%2C31.2298&amp;layer=mapnik&amp;marker=31.2243%2C121.4333" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+            <div class="map-actions">
+              <a class="map-action primary" href="https://uri.amap.com/navigation?to=121.4333%2C31.2243%2CMOMO%E6%AF%9B%E7%90%83%E7%A0%94%E7%A9%B6%E6%89%80&amp;mode=car" target="_blank" rel="noopener">高德地图导航 <span aria-hidden="true">↗</span></a>
+              <a class="map-action" href="https://api.map.baidu.com/marker?location=31.2243%2C121.4333&amp;title=MOMO%E6%AF%9B%E7%90%83%E7%A0%94%E7%A9%B6%E6%89%80&amp;content=%E4%B8%8A%E6%B5%B7%E5%B8%82%E9%9D%99%E5%AE%89%E5%8C%BA%E6%84%9A%E5%9B%AD%E8%B7%AF88%E5%8F%B7&amp;output=html" target="_blank" rel="noopener">百度地图查看 <span aria-hidden="true">↗</span></a>
+            </div>
+          </div>
+          <div class="map-info">
+            <span class="eyebrow">Find us</span>
+            <h2>愚园路上，<br/>很好找。</h2>
+            <p>门店临街而设，带毛孩子步行到店很方便。来之前也可以先预约，减少等待。</p>
+            <div class="map-details">
+              <div class="map-detail"><i>⌂</i><span><strong>门店地址</strong><span>上海市静安区愚园路 88 号</span></span></div>
+              <div class="map-detail"><i>◷</i><span><strong>营业时间</strong><span>周一至周日 10:00 – 20:00</span></span></div>
+              <div class="map-detail"><i>⌁</i><span><strong>地铁出行</strong><span>地铁 2 / 11 号线江苏路站 3 号口，步行约 3 分钟</span></span></div>
+              <div class="map-detail"><i>☎</i><span><strong>到店咨询</strong><span>021 – 6288 1314</span></span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="booking" id="booking">
+        <div class="container"><div class="booking-card"><div class="booking-copy"><span class="eyebrow">Make a little room for care</span><h2>给它一段，<br/>只属于它的时间。</h2><p>留下信息，我们会在营业时间内联系你，确认合适的护理方案和到店时间。</p><div class="booking-detail"><span>◷ 周一至周日 10:00 – 20:00</span><span>⌂ 上海市静安区愚园路 88 号</span><span>☎ 021 – 6288 1314</span></div></div><form class="booking-form" id="bookingForm"><div class="field"><label for="petName">毛孩子的名字</label><input id="petName" name="petName" required placeholder="例如：豆包" /></div><div class="field"><label for="phone">你的联系方式</label><input id="phone" name="phone" required placeholder="手机号 / 微信号" /></div><div class="field"><label for="petType">它是</label><select id="petType" name="petType"><option>狗狗</option><option>猫咪</option><option>其他小宠</option></select></div><div class="field"><label for="serviceType">想预约</label><select id="serviceType" name="serviceType"><option>清爽洗护</option><option>舒缓洗护</option><option>造型修剪</option><option>深层呵护</option></select></div><div class="field full"><label for="date">期望到店日期</label><input id="date" name="date" type="date" required /></div><div class="form-submit"><small>提交后约 30 分钟内回复（营业时间）</small><button type="submit">提交预约 <span aria-hidden="true">↗</span></button></div><div class="form-message" id="formMessage" role="status">收到啦！我们会尽快联系你确认时间。</div></form></div></div>
+      </section>
+    </main>
+
+    <footer><div class="container footer-grid"><div class="footer-copy"><a class="brand" href="#top"><span class="brand-mark">✦</span><span class="brand-copy"><strong>MOMO 毛球研究所</strong><span>GROOMING STUDIO</span></span></a><p>让每一次洗护，都像被拥抱。</p></div><div class="footer-links"><a href="#services">服务项目</a><a href="#why-us">关于 MOMO</a><a href="#faq">常见问题</a><a href="#map">门店位置</a><a href="#booking">预约到店</a><span>© 2026 MOMO</span></div></div></footer>
+    <a class="floating-book" href="#booking">立即预约 <span aria-hidden="true">↗</span></a>
+  </div>
+  <script>
+    const nav = document.querySelector('#nav');
+    const toggle = document.querySelector('#mobileToggle');
+    toggle?.addEventListener('click', () => {
+      const open = nav.classList.toggle('mobile-open');
+      toggle.setAttribute('aria-expanded', String(open));
+    });
+    document.querySelectorAll('.nav-links a').forEach(link => link.addEventListener('click', () => {
+      nav.classList.remove('mobile-open');
+      toggle?.setAttribute('aria-expanded', 'false');
+    }));
+    document.querySelectorAll('.faq-question').forEach(button => button.addEventListener('click', () => {
+      const item = button.closest('.faq-item');
+      const willOpen = !item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(other => {
+        other.classList.remove('open');
+        other.querySelector('.faq-question')?.setAttribute('aria-expanded', 'false');
+      });
+      if (willOpen) {
+        item.classList.add('open');
+        button.setAttribute('aria-expanded', 'true');
+      }
+    }));
+    const form = document.querySelector('#bookingForm');
+    const message = document.querySelector('#formMessage');
+    form?.addEventListener('submit', event => {
+      event.preventDefault();
+      if (!form.reportValidity()) return;
+      message.classList.add('show');
+      form.reset();
+      setTimeout(() => message.classList.remove('show'), 6000);
+    });
+  </script>
+</body>
+</html>
