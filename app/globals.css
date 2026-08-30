@@ -170,7 +170,7 @@
     .why-grid { display: grid; grid-template-columns: 1.03fr .97fr; align-items: center; gap: 76px; }
     .photo-stack { position: relative; min-height: 530px; }
     .photo-main { position: absolute; inset: 0 42px 42px 0; width: calc(100% - 42px); height: calc(100% - 42px); object-fit: cover; border-radius: 30px; box-shadow: var(--shadow); }
-    .photo-float { position: absolute; right: 0; bottom: 0; width: 50%; padding: 10px; background: var(--paper); border-radius: 22px; box-shadow: 0 18px 34px rgba(67,62,51,.16); transform: rotate(4deg); }
+    .photo-float { position: absolute; right: 0; bottom: 0; width: 50%; aspect-ratio: 1 / .8; padding: 10px; overflow: hidden; background: var(--paper); border-radius: 22px; box-shadow: 0 18px 34px rgba(67,62,51,.16); transform: rotate(4deg); }
     .photo-float img { width: 100%; aspect-ratio: 1 / .8; object-fit: cover; border-radius: 14px; }
     .why-copy .eyebrow { margin-bottom: 18px; }
     .why-copy h2 { max-width: 500px; margin-bottom: 21px; }
